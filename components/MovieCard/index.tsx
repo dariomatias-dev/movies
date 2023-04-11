@@ -7,6 +7,9 @@ type Props = {
 };
 
 const MovieCard = ({ movie }: Props) => {
+    const release_date = new Date(movie.release_date);
+    const release_date_pt_BR = release_date.toLocaleDateString('pt-BR');
+
     return (
         <Link
             href={`/movie?id=${movie.id}`}
@@ -27,7 +30,7 @@ const MovieCard = ({ movie }: Props) => {
                             {movie.title}
                         </h2>
                         <span>
-                            {movie.release_date}
+                            {release_date_pt_BR}
                         </span>
                     </div>
                     <span className='bg-[#18181B] text-zinc-300 font-bold ml-3 py-1 px-2 rounded-lg'>

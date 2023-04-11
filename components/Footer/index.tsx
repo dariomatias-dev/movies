@@ -13,7 +13,7 @@ const Footer = () => {
 
                     <span className='inline-block w-12 h-[2px] bg-red-700 mt-2 mb-2' />
 
-                    <p className='max-w-[400px]'>
+                    <p className='max-w-[400px] text-zinc-300'>
                         Eu sou um desenvolvedor Web Junior Full Stack. Esse é um dos meus projetos criado visando o aperfeiçoamento de minhas habilidades como programador, além da obtenção de conhecimento técnico e prático.
                     </p>
                 </div>
@@ -25,16 +25,16 @@ const Footer = () => {
 
                     <span className='inline-block w-12 h-[2px] bg-red-700 mt-2 mb-2' />
 
-                    <div className='flex flex-col gap-3'>
-                        <div className='flex items-center gap-3'>
-                            <div className='flex justify-center items-center w-8 h-8 bg-zinc-900 rounded-full'>
+                    <div className='flex flex-col gap-3 text-zinc-300'>
+                        <div className='flex items-center gap-3 group'>
+                            <div className='flex justify-center items-center w-8 h-8 bg-zinc-900 group-hover:bg-zinc-800 rounded-full transition duration-300'>
                                 <MdEmail className='w-5 h-5' />
                             </div>
                             matiasdario75@gmail.com
                         </div>
 
-                        <div className='flex items-center gap-3'>
-                            <div className='flex justify-center items-center w-8 h-8 bg-zinc-900 rounded-full'>
+                        <div className='flex items-center gap-3 group'>
+                            <div className='flex justify-center items-center w-8 h-8 bg-zinc-900 group-hover:bg-zinc-800 rounded-full transition duration-300'>
                                 <BsFillTelephoneFill className='w-5 h-5' />
                             </div>
                             +55 (83) 98640-4371
@@ -54,7 +54,7 @@ const Footer = () => {
                             href='https://www.instagram.com/dariomatias_dev/'
                             legacyBehavior
                         >
-                            <a className='flex justify-center items-center w-8 h-8 bg-zinc-900 rounded-full'>
+                            <a className='flex justify-center items-center w-8 h-8 bg-zinc-900 hover:bg-zinc-800 rounded-full hover:scale-110 transition duration-300'>
                                 <BsInstagram className='w-5 h-5' />
                             </a>
                         </Link>
@@ -63,7 +63,7 @@ const Footer = () => {
                             href='https://github.com/dariomatias-dev/'
                             legacyBehavior
                         >
-                            <a className='flex justify-center items-center w-8 h-8 bg-zinc-900 rounded-full'>
+                            <a className='flex justify-center items-center w-8 h-8 bg-zinc-900 hover:bg-zinc-800 rounded-full hover:scale-110 transition duration-300'>
                                 <BsGithub className='w-5 h-5' />
                             </a>
                         </Link>
@@ -72,7 +72,7 @@ const Footer = () => {
                             href='https://twitter.com/matiasdario752/'
                             legacyBehavior
                         >
-                            <a className='flex justify-center items-center w-8 h-8 bg-zinc-900 rounded-full'>
+                            <a className='flex justify-center items-center w-8 h-8 bg-zinc-900 hover:bg-zinc-800 rounded-full hover:scale-110 transition duration-300'>
                                 <BsTwitter className='w-5 h-5' />
                             </a>
                         </Link>
