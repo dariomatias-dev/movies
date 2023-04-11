@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import MovieCard from "@/components/MovieCard";
+import MovieCard from '@/components/MovieCard';
 
-import { MovieProps } from "@/@types/Movie";
+import { MovieProps } from '@/@types/Movie';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -18,7 +18,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="flex flex-wrap justify-center gap-10 my-16 px-4">
+    <div className='flex flex-wrap justify-center gap-10 my-16 px-4'>
       {
         movies.map((movie: MovieProps) => {
           return (
