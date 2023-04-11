@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { GoSearch } from 'react-icons/go';
 
-const NavBar = () => {
+const Header = () => {
     return (
         <div className='flex justify-between items-center h-20 bg-[#0B0B0B] px-8'>
             <Link
@@ -31,4 +31,4 @@ const NavBar = () => {
     );
 };
 
-export default NavBar;
+export default Header;
