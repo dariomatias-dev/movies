@@ -24,11 +24,10 @@ const Search = () => {
     }, [query])
 
     return (
-        <>
+        <div className='flex flex-col gap-20 mt-20 mb-16'>
             {
                 movies.length !== 0 && (
-                    <div className='flex flex-col gap-20 mt-20 mb-16'>
-
+                    <>
                         <h1 className='text-4xl sm:text-5xl text-center font-bold'>
                             Resultado(s) para: {query}
                         </h1>
@@ -49,7 +48,7 @@ const Search = () => {
 
                             {movies?.length === 0 && 'Carregando filmes...'}
                         </div>
-                    </div>
+                    </>
                 )
             }
 
@@ -62,7 +61,7 @@ const Search = () => {
                     </div>
                 )
             }
-        </>
+        </div>
     );
 };
 

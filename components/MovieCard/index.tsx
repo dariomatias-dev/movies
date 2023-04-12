@@ -36,7 +36,7 @@ const MovieCard = ({ movie }: Props) => {
                     <span className='bg-[#18181B] text-zinc-300 font-bold ml-3 py-1 px-2 rounded-lg'>
                         {
                             movie.vote_average === 0 ?
-                                '--'
+                                '-'
                                 :
                                 movie.vote_average
                         }

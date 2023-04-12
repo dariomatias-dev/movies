@@ -3,26 +3,35 @@ import { useEffect, useState } from 'react';
 import MovieCard from '@/components/MovieCard';
 
 import { MovieProps } from '@/@types/Movie';
+import PageButton from '@/components/PageButton';
 
 const Home = () => {
   const [movies, setMovies] = useState<MovieProps[]>([]);
+  const [page, setPage] = useState(1);
+  const [amountPages, setAmountPages] = useState(5);
 
-  const serachMovies = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API}top_rated?${process.env.NEXT_PUBLIC_API_KEY}`);
+  const searchMovies = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API}top_rated?${process.env.NEXT_PUBLIC_API_KEY}&page=${page}`);
     const data = await res.json();
+    setAmountPages(data.total_pages);
     setMovies(data.results);
   };
 
   useEffect(() => {
-    serachMovies();
+    if (movies.length)
+      searchMovies();
+  }, [page]);
+
+  useEffect(() => {
+    searchMovies();
   }, []);
 
   return (
-    <div className='flex flex-col gap-20 mt-20 mb-16'>
+    <div className='flex flex-col mt-20 mb-16'>
       {
         movies.length !== 0 && (
           <>
-            <h1 className='text-5xl text-center font-bold'>
+            <h1 className='text-5xl text-center font-bold mb-20'>
               Filmes mais votados
             </h1>
 
@@ -39,6 +48,38 @@ const Home = () => {
                   )
                 })
               }
+            </div>
+
+            <div className='flex justify-center mt-8'>
+              <div className='w-96 flex justify-between'>
+                <PageButton
+                  buttonType='previous'
+                  page={page}
+                  setPage={setPage}
+                />
+
+                {
+                  Array.from({ length: 4 }).map((_, index) => {
+                    return (
+                      <PageButton
+                        key={index}
+                        buttonType='next'
+                        amountPages={amountPages}
+                        buttonValue={page + index + 1}
+                        page={page}
+                        setPage={setPage}
+                      />
+                    )
+                  })
+                }
+
+                <PageButton
+                  buttonType='next'
+                  amountPages={amountPages}
+                  page={page}
+                  setPage={setPage}
+                />
+              </div>
             </div>
           </>
 
