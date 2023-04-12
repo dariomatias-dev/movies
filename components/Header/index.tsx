@@ -1,9 +1,18 @@
+import { useState } from 'react';
 import Link from 'next/link';
-import { GoSearch } from 'react-icons/go';
+import { useRouter } from 'next/router';
+import gradientStyle from '../../styles/Gradient.module.css';
+import inputStyle from '../../styles/Input.module.css';
 
 const Header = () => {
+    const [searchParams, setSearchParams] = useState('');
+
+    const router = useRouter();
+
+    const search = () => router.push(`/search?q=${searchParams}`);
+
     return (
-        <div className='flex justify-between items-center h-20 bg-[#0B0B0B] px-8'>
+        <div className={`${gradientStyle.gradient} flex justify-between items-center h-20 px-8`}>
             <Link
                 href='/'
                 legacyBehavior
@@ -13,20 +22,13 @@ const Header = () => {
                 </a>
             </Link>
 
-            <div className='flex items-center gap-2'>
-                <input
-                    type='text'
-                    placeholder='Buscar filmes'
-                    className='h-8 pl-2 text-black rounded-sm outline-none'
-                />
-
-                <button
-                    type='button'
-                    className='flex justify-center items-center w-8 h-8 bg-red-500 hover:bg-transparent border-red-500 hover:border-2 hover:border-red-600 rounded-sm transition duration-300'
-                >
-                    <GoSearch className='w-4 h-4 text-white' />
-                </button>
-            </div>
+            <input
+                type='text'
+                placeholder='Buscar filmes'
+                onChange={e => setSearchParams(e.target.value)}
+                onKeyUp={e => e.key === 'Enter' ? search() : ''}
+                className={`${inputStyle.input} h-8 pl-2 bg-zinc-900 border border-zinc-700 hover:border-zinc-600 focus:border-zinc-500 rounded-md outline-none transition duration-300`}
+            />
         </div>
     );
 };

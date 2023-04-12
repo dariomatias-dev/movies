@@ -24,7 +24,9 @@ export type MovieDetailedProps = {
         iso_3166_1: string;
         name: string;
     }>;
+    release_year: string;
     revenue: number;
+    runtime_in_minutes: string;
     runtime: number | string;
     spoken_languages: Array<{
         english_name: string;

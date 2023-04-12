@@ -36,9 +36,11 @@ const Movie = () => {
         const data: MovieDetailedProps = await res.json();
 
         const release_date = getReleaseMovie(data.release_date);
+        data.release_year = (data.release_date).split('-')[0];
         data.release_date = release_date;
 
         const runtime = getRuntimeMovie(Number(data.runtime));
+        data.runtime_in_minutes = data.runtime.toString();
         data.runtime = runtime;
 
         setMovie(data);
@@ -54,10 +56,10 @@ const Movie = () => {
     };
 
     const getRuntimeMovie = (runtime: number) => {
-        let hours = Math.floor(runtime / 60);
-        let minutes = runtime % 60;
+        const hours = Math.floor(runtime / 60);
+        const minutes = runtime % 60;
 
-        return `${hours} horas e ${minutes} minutos.`;
+        return `${hours} ${hours === 1 ? 'hora' : 'horas'} e ${minutes} ${minutes === 1 ? 'minuto' : 'minutos'}.`;
     };
 
     useEffect(() => {
@@ -83,6 +85,11 @@ const Movie = () => {
                         <h1 className='text-4xl font-bold'>
                             {movie.title}
                         </h1>
+
+                        <div className='flex gap-16'>
+                            <p>{movie.release_year}</p>
+                            <p>{movie.runtime_in_minutes} min</p>
+                        </div>
 
                         <div className='flex gap-2'>
                             <AiFillStar className='w-6 h-6 text-yellow-300' />
@@ -170,7 +177,12 @@ const Movie = () => {
                                 Orçamento:
                             </h2>
                             <p className='ml-2'>
-                                {movie.budget?.toLocaleString('pt-BR', { currency: 'BRL', style: 'currency' })}
+                                {
+                                    movie.budget === 0 ?
+                                        '---'
+                                        :
+                                        movie.budget?.toLocaleString('pt-BR', { currency: 'BRL', style: 'currency' })
+                                }
                             </p>
                         </div>
                         <div className='flex flex-col gap-2'>
@@ -179,7 +191,12 @@ const Movie = () => {
                                 Receita:
                             </h2>
                             <p className='ml-2'>
-                                {movie.revenue?.toLocaleString('pt-BR', { currency: 'BRL', style: 'currency' })}
+                                {
+                                    movie.revenue === 0 ?
+                                        '---'
+                                        :
+                                        movie.revenue?.toLocaleString('pt-BR', { currency: 'BRL', style: 'currency' })
+                                }
                             </p>
                         </div>
                     </div>

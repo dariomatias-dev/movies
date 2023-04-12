@@ -1,0 +1,3 @@
+.input:not(:placeholder-shown) {
+    border-color: rgb(82 82 91);
+}
