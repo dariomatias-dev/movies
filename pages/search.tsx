@@ -1,67 +1,49 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from "next/router";
 
-import MovieCard from '@/components/MovieCard';
+import MoviesPage from '@/components/MoviesPage';
 
 import { MovieProps } from '@/@types/Movie';
 
+let title = '';
+const errorMessage = 'Infelizmente não há resultados para o filme que tentou buscar ou ocorreu algum problema.';
+
 const Search = () => {
     const [movies, setMovies] = useState<MovieProps[]>([]);
+    const [page, setPage] = useState(1);
+    const [amountPages, setAmountPages] = useState(5);
 
     const router = useRouter();
     const query = router.query['q'];
 
-    const getMovies = async (url: string) => {
-        const res = await fetch(url);
+    const getMovies = async () => {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SEARCH}?${process.env.NEXT_PUBLIC_API_KEY}&query=${query}&page=${page}`);
         const data = await res.json();
+        setAmountPages(data.total_pages);
         setMovies(data.results);
     };
 
     useEffect(() => {
+        if (movies.length)
+            getMovies();
+    }, [page]);
+
+    useEffect(() => {
         if (!query) return;
-        const searchWithQueryURL = `${process.env.NEXT_PUBLIC_SEARCH}?${process.env.NEXT_PUBLIC_API_KEY}&query=${query}`;
-        getMovies(searchWithQueryURL);
+
+        title = `Resultado(s) para: ${query}`;
+        getMovies();
     }, [query])
 
     return (
-        <div className='flex flex-col gap-20 mt-20 mb-16'>
-            {
-                movies.length !== 0 && (
-                    <>
-                        <h1 className='text-4xl sm:text-5xl text-center font-bold'>
-                            Resultado(s) para: {query}
-                        </h1>
-
-                        <div className='flex flex-wrap justify-center gap-10 px-8'>
-                            {
-                                movies?.map(movie => {
-                                    if (movie.poster_path == null) return;
-
-                                    return (
-                                        <MovieCard
-                                            key={movie.id}
-                                            movie={movie}
-                                        />
-                                    )
-                                })
-                            }
-
-                            {movies?.length === 0 && 'Carregando filmes...'}
-                        </div>
-                    </>
-                )
-            }
-
-            {
-                movies.length === 0 && (
-                    <div className='h-full flex justify-center my-36'>
-                        <h1 className='max-w-[800px] text-4xl sm:text-5xl text-center font-bold mx-8'>
-                            Infelizmente não há resultados para o filme que tentou buscar, ou ocorreu algum problema.
-                        </h1>
-                    </div>
-                )
-            }
-        </div>
+        <MoviesPage
+            title={title}
+            errorMessage={errorMessage}
+            amountPages={amountPages}
+            movies={movies}
+            page={page}
+            setPage={setPage}
+        />
     );
 };
 

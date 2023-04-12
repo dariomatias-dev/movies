@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 
-import MovieCard from '@/components/MovieCard';
+import MoviesPage from '@/components/MoviesPage';
 
 import { MovieProps } from '@/@types/Movie';
-import PageButton from '@/components/PageButton';
+
+const title = 'Filmes mais votados';
+const errorMessage = 'Infelizmente ocorreu algum erro. Recarregue a página ou tente novamente mais tarde.'
 
 const Home = () => {
   const [movies, setMovies] = useState<MovieProps[]>([]);
@@ -27,75 +29,14 @@ const Home = () => {
   }, []);
 
   return (
-    <div className='flex flex-col mt-20 mb-16'>
-      {
-        movies.length !== 0 && (
-          <>
-            <h1 className='text-5xl text-center font-bold mb-20'>
-              Filmes mais votados
-            </h1>
-
-            <div className='flex flex-wrap justify-center gap-6 sm:gap-12 px-6 sm:px-8'>
-              {
-                movies.map(movie => {
-                  if (movie.poster_path == null) return;
-
-                  return (
-                    <MovieCard
-                      key={movie.id}
-                      movie={movie}
-                    />
-                  )
-                })
-              }
-            </div>
-
-            <div className='flex justify-center mt-8'>
-              <div className='w-96 flex justify-between'>
-                <PageButton
-                  buttonType='previous'
-                  page={page}
-                  setPage={setPage}
-                />
-
-                {
-                  Array.from({ length: 4 }).map((_, index) => {
-                    return (
-                      <PageButton
-                        key={index}
-                        buttonType='next'
-                        amountPages={amountPages}
-                        buttonValue={page + index + 1}
-                        page={page}
-                        setPage={setPage}
-                      />
-                    )
-                  })
-                }
-
-                <PageButton
-                  buttonType='next'
-                  amountPages={amountPages}
-                  page={page}
-                  setPage={setPage}
-                />
-              </div>
-            </div>
-          </>
-
-        )
-      }
-
-      {
-        movies.length === 0 && (
-          <div className='h-full flex justify-center my-36'>
-            <h1 className='text-4xl sm:text-5xl text-center font-bold mx-8'>
-              Carregando filmes...
-            </h1>
-          </div>
-        )
-      }
-    </div>
+    <MoviesPage
+      title={title}
+      errorMessage={errorMessage}
+      amountPages={amountPages}
+      movies={movies}
+      page={page}
+      setPage={setPage}
+    />
   );
 };
 
