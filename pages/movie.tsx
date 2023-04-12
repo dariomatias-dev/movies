@@ -70,19 +70,20 @@ const Movie = () => {
     }, [id]);
 
     return (
-        <div className='h-full flex justify-center mt-16 mb-20'>
+        <div className='h-full flex justify-center mt-16 mx-8 mb-20'>
             <div className='w-full max-w-[900px]'>
-                <div className='flex gap-12'>
+                <div className='flex flex-col sm:flex-row gap-12'>
                     <Image
                         src={`${process.env.NEXT_PUBLIC_MOVIE_IMAGE}${movie.poster_path}`}
                         width={500}
                         height={500}
+                        priority={true}
                         alt={`${movie.title} movie.`}
-                        className='max-w-[500px] max-h-[500px] h-full'
+                        className='w-full max-w-[300px] sm:max-w-[500px] max-h-[500px] h-full mx-auto sm:mx-0'
                     />
 
-                    <div className='flex flex-col gap-4 mt-10'>
-                        <h1 className='text-4xl font-bold'>
+                    <div className='flex flex-col gap-4 mt-2 sm:mt-6 md:mt-10 mx-2 sm:mx-0'>
+                        <h1 className='text-3xl md:text-4xl font-bold'>
                             {movie.title}
                         </h1>
 
@@ -95,6 +96,7 @@ const Movie = () => {
                             <AiFillStar className='w-6 h-6 text-yellow-300' />
                             {movie.vote_average}
                         </div>
+
                         {
                             movie.tagline && (
                                 <p>{movie.tagline}</p>
@@ -123,37 +125,43 @@ const Movie = () => {
                     >
                         Informações sobre o filme
                     </h2>
-                    <div className='grid grid-cols-2 gap-x-28 gap-y-8'>
+
+                    <div className='flex flex-col items-center sm:grid grid-cols-2 gap-x-28 gap-y-8 text-center sm:text-start'>
                         <div className='flex flex-col gap-2'>
                             <h2 className='flex items-center gap-2 text-2xl font-bold'>
                                 <GiTheater className='w-7 h-7 text-red-500' />
                                 Lançado em:
                             </h2>
+
                             <p className='ml-2'>
                                 {movie.release_date}
                             </p>
                         </div>
+
                         <div className='flex flex-col gap-2'>
                             <h2 className='flex items-center gap-2 text-2xl font-bold'>
                                 <BiTimeFive className='w-8 h-8 text-red-500' />
                                 Duração:
                             </h2>
-                            <p className='ml-2'>
+
+                            <p className='ml-1'>
                                 {movie.runtime}
                             </p>
                         </div>
+
                         <div className='flex flex-col gap-2'>
                             <h2 className='flex items-center gap-2 text-2xl font-bold'>
                                 <MdTheaterComedy className='w-8 h-8 text-red-500' />
                                 Gêneros:
                             </h2>
+
                             <ul>
                                 {
                                     movie.genres?.map(genre => {
                                         return (
                                             <li
                                                 key={genre.id}
-                                                className='list-disc ml-8'
+                                                className='sm:list-disc ml-8'
                                             >
                                                 {genre.name}
                                             </li>
@@ -162,21 +170,25 @@ const Movie = () => {
                                 }
                             </ul>
                         </div>
+
                         <div className='flex flex-col gap-2'>
                             <h2 className='flex items-center gap-2 text-2xl font-bold'>
                                 <BsPersonHearts className='w-8 h-8 text-red-500' />
                                 Popularidade:
                             </h2>
+
                             <p className='ml-2'>
                                 {movie.popularity}
                             </p>
                         </div>
+
                         <div className='flex flex-col gap-2'>
                             <h2 className='flex items-center gap-2 text-2xl font-bold'>
                                 <MdOutlineAttachMoney className='w-8 h-8 text-red-500' />
                                 Orçamento:
                             </h2>
-                            <p className='ml-2'>
+
+                            <p className='ml-3'>
                                 {
                                     movie.budget === 0 ?
                                         '---'
@@ -185,11 +197,13 @@ const Movie = () => {
                                 }
                             </p>
                         </div>
+
                         <div className='flex flex-col gap-2'>
                             <h2 className='flex items-center gap-2 text-2xl font-bold'>
                                 <GiMoneyStack className='w-8 h-8 text-red-500' />
                                 Receita:
                             </h2>
+
                             <p className='ml-2'>
                                 {
                                     movie.revenue === 0 ?

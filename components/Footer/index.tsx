@@ -5,20 +5,20 @@ import { MdEmail } from 'react-icons/md';
 const Footer = () => {
     return (
         <div>
-            <div className="flex justify-around h-52 bg-[#080808] pt-4">
-                <div className='flex flex-col'>
+            <div className="flex flex-col md:flex-row items-center md:items-stretch justify-around gap-8 min-h-52 bg-[#080808] py-4 px-8">
+                <div className='flex flex-col items-center md:items-start'>
                     <h2 className='inline-block text-lg font-bold'>
                         Sobre nós
                     </h2>
 
                     <span className='inline-block w-12 h-[2px] bg-red-700 mt-2 mb-2' />
 
-                    <p className='max-w-[400px] text-zinc-300'>
+                    <p className='w-full max-w-[400px] text-zinc-300 text-justify md:text-start'>
                         Eu sou um desenvolvedor Web Junior Full Stack. Esse é um dos meus projetos criado visando o aperfeiçoamento de minhas habilidades como programador, além da obtenção de conhecimento técnico e prático.
                     </p>
                 </div>
 
-                <div className='flex flex-col'>
+                <div className='flex flex-col items-center md:items-start'>
                     <h2 className='inline-block text-lg font-bold'>
                         Contato
                     </h2>
@@ -42,7 +42,7 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className='flex flex-col'>
+                <div className='flex flex-col items-center md:items-start'>
                     <h2 className='inline-block text-lg font-bold'>
                         Redes Sociais
                     </h2>
@@ -80,7 +80,7 @@ const Footer = () => {
                 </div>
             </div>
 
-            <div className="flex justify-center items-center h-12 bg-black text-sm text-zinc-400">
+            <div className="flex justify-center items-center h-12 bg-black text-xs sm:text-sm text-zinc-400">
                 Copyright ©2023 | Criado por Dário Matias
             </div>
         </div>

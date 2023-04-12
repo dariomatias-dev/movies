@@ -24,27 +24,45 @@ const Search = () => {
     }, [query])
 
     return (
-        <div className='flex flex-col gap-20 mt-20 mb-16'>
-            <h1 className='text-5xl text-center font-bold'>
-                Resultado(s) para: {query}
-            </h1>
+        <>
+            {
+                movies.length !== 0 && (
+                    <div className='flex flex-col gap-20 mt-20 mb-16'>
 
-            <div className='flex flex-wrap justify-center gap-10 px-4'>
-                {
-                    movies?.map(movie => {
-                        if (movie.poster_path == null) return;
+                        <h1 className='text-4xl sm:text-5xl text-center font-bold'>
+                            Resultado(s) para: {query}
+                        </h1>
 
-                        return (
-                            <MovieCard
-                                key={movie.id}
-                                movie={movie}
-                            />
-                        )
-                    })
-                }
-                {movies?.length === 0 && 'Carregando filmes...'}
-            </div>
-        </div>
+                        <div className='flex flex-wrap justify-center gap-10 px-8'>
+                            {
+                                movies?.map(movie => {
+                                    if (movie.poster_path == null) return;
+
+                                    return (
+                                        <MovieCard
+                                            key={movie.id}
+                                            movie={movie}
+                                        />
+                                    )
+                                })
+                            }
+
+                            {movies?.length === 0 && 'Carregando filmes...'}
+                        </div>
+                    </div>
+                )
+            }
+
+            {
+                movies.length === 0 && (
+                    <div className='h-full flex justify-center my-36'>
+                        <h1 className='max-w-[800px] text-4xl sm:text-5xl text-center font-bold mx-8'>
+                            Infelizmente não há resultados para o filme que tentou buscar, ou ocorreu algum problema.
+                        </h1>
+                    </div>
+                )
+            }
+        </>
     );
 };
 
