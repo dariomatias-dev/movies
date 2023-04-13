@@ -137,7 +137,7 @@ const Movie = () => {
                                 Lançado em:
                             </h2>
 
-                            <p className="ml-2">{movie.release_date}</p>
+                            <p className="sm:ml-2">{movie.release_date}</p>
                         </div>
 
                         <div className="flex flex-col gap-2">
@@ -146,7 +146,7 @@ const Movie = () => {
                                 Duração:
                             </h2>
 
-                            <p className="ml-1">{movie.runtime}</p>
+                            <p className="sm:ml-1">{movie.runtime}</p>
                         </div>
 
                         <div className="flex flex-col gap-2">
@@ -160,7 +160,7 @@ const Movie = () => {
                                     return (
                                         <li
                                             key={genre.id}
-                                            className="sm:list-disc ml-8"
+                                            className="sm:list-disc sm:ml-8"
                                         >
                                             {genre.name}
                                         </li>
@@ -175,7 +175,7 @@ const Movie = () => {
                                 Popularidade:
                             </h2>
 
-                            <p className="ml-2">{movie.popularity}</p>
+                            <p className="sm:ml-2">{movie.popularity}</p>
                         </div>
 
                         <div className="flex flex-col gap-2">
@@ -184,7 +184,7 @@ const Movie = () => {
                                 Orçamento:
                             </h2>
 
-                            <p className="ml-3">
+                            <p className="sm:ml-3">
                                 {movie.budget === 0
                                     ? "---"
                                     : movie.budget?.toLocaleString("pt-BR", {
@@ -200,7 +200,7 @@ const Movie = () => {
                                 Receita:
                             </h2>
 
-                            <p className="ml-2">
+                            <p className="sm:ml-2">
                                 {movie.revenue === 0
                                     ? "---"
                                     : movie.revenue?.toLocaleString("pt-BR", {
