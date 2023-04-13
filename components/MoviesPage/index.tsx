@@ -29,7 +29,7 @@ const MoviesPage = ({ title, errorMessage, movies }: Props) => {
                         })}
                     </div>
 
-                    <div className="flex justify-center mt-8">
+                    <div className="flex justify-center mt-8 mx-4">
                         <div className="w-96 flex justify-between">
                             <PageButton buttonType="previous" />
 

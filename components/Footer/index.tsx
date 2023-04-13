@@ -13,7 +13,7 @@ const Footer = () => {
 
     return (
         <>
-            <div className="relative flex flex-col md:flex-row items-center md:items-stretch justify-around gap-8 min-h-52 bg-[#0a0a0a] py-4 px-8">
+            <div className="relative flex flex-col md:flex-row items-center md:items-stretch justify-around gap-8 min-h-52 bg-[#0a0a0a] pt-5 md:pt-4 px-8 pb-4">
                 <div className="absolute top-4 right-4 bg-zinc-400 rounded-md">
                     <BsFillArrowUpSquareFill
                         onClick={goToTheTop}

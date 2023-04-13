@@ -80,7 +80,7 @@ const Movie = () => {
     if (JSON.stringify(movie) === "{}") return <Loading />;
 
     return (
-        <div className="h-full flex justify-center mx-8 my-20">
+        <div className="h-full flex justify-center mx-8 mt-16 mb-20 sm:mt-20">
             <div className="w-full max-w-[900px]">
                 <div className="flex flex-col md:flex-row gap-12">
                     <Image
@@ -125,7 +125,7 @@ const Movie = () => {
                 <div className="flex flex-col items-center">
                     <h2
                         id="details"
-                        className="text-3xl text-center font-bold mb-16"
+                        className="text-3xl text-center font-bold mb-12 sm:mb-16"
                     >
                         Informações sobre o filme
                     </h2>
