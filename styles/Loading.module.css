@@ -1,0 +1,28 @@
+.rotationOne {
+    animation: hourlyRotation 2s cubic-bezier(0.26, 1.36, 0.74, -0.29) infinite;
+}
+
+.rotationTwo {
+    animation: counterclockwiseRotation 2s cubic-bezier(0.26, 1.36, 0.74, -0.29)
+        infinite;
+}
+
+@keyframes hourlyRotation {
+    0% {
+        transform: rotateZ(360deg);
+    }
+
+    100% {
+        transform: rotateZ(0deg);
+    }
+}
+
+@keyframes counterclockwiseRotation {
+    0% {
+        transform: rotateZ(-360deg);
+    }
+
+    100% {
+        transform: rotateZ(0deg);
+    }
+}

@@ -7,7 +7,9 @@ type PageDataProps = {
 
 type DataContextProps = {
     pageData: PageDataProps;
-    changePageData: (changeProperty: string, value: number) => void
+    changePageData: (changeProperty: string, value: number) => void;
+    params: string;
+    changeParams: (value: string) => void;
 };
 
 const DataContext = createContext({} as DataContextProps);
@@ -21,18 +23,25 @@ export const DataProvider = ({ children }: DataProviderProps) => {
         page: 1,
         amountPages: 1,
     });
+    const [params, setParams] = useState('');
 
     const changePageData = (changeProperty: string, value: number) => {
-        setPageData(prevState => {
+        setPageData((prevState) => {
             return { ...prevState, [changeProperty]: value };
         });
     };
 
+    const changeParams = (value: string) => setParams(value);
+
     return (
-        <DataContext.Provider value={{
-            pageData,
-            changePageData,
-        }}>
+        <DataContext.Provider
+            value={{
+                pageData,
+                changePageData,
+                params,
+                changeParams,
+            }}
+        >
             {children}
         </DataContext.Provider>
     );
