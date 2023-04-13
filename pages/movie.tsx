@@ -82,17 +82,17 @@ const Movie = () => {
     return (
         <div className="h-full flex justify-center mx-8 my-20">
             <div className="w-full max-w-[900px]">
-                <div className="flex flex-col sm:flex-row gap-12">
+                <div className="flex flex-col md:flex-row gap-12">
                     <Image
                         src={`${process.env.NEXT_PUBLIC_MOVIE_IMAGE}${movie.poster_path}`}
                         width={500}
                         height={500}
                         priority={true}
                         alt={`${movie.title} movie.`}
-                        className="w-full max-w-[300px] sm:max-w-[500px] max-h-[550px] h-full mx-auto sm:mx-0"
+                        className="w-full max-w-[300px] md:max-w-[500px] max-h-[550px] h-full mx-auto md:mx-0"
                     />
 
-                    <div className="flex flex-col gap-4 mt-2 sm:mt-6 md:mt-10 mx-2 sm:mx-0">
+                    <div className="flex flex-col gap-4 mt-2 sm:mt-6 md:mt-12 mx-2 sm:mx-0">
                         <h1 className="text-3xl md:text-4xl font-bold">
                             {movie.title}
                         </h1>
@@ -213,8 +213,8 @@ const Movie = () => {
                 </div>
 
                 <div className="flex justify-center">
-                    <Link href={`/search?q=${params}`} legacyBehavior>
-                        <a className="w-80 hover:bg-red-500 text-red-500 hover:text-white text-center mt-14 sm:mt-20 p-2 border-2 border-red-500 rounded-md transition duration-300">
+                    <Link href={params ? `/search?q=${params}` : '/'} legacyBehavior>
+                        <a className="w-80 bg-red-500 hover:bg-transparent text-white hover:text-red-500 text-center mt-14 sm:mt-20 p-2 border-2 border-red-500 rounded-md transition duration-300">
                             Voltar
                         </a>
                     </Link>

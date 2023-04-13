@@ -14,10 +14,10 @@ const MoviesPage = ({ title, errorMessage, movies }: Props) => {
     const { pageData } = useData();
 
     return (
-        <div className="flex flex-col mt-20 mb-16">
+        <div className="flex flex-col mt-16 sm:mt-20 mb-16">
             {movies.length !== 0 && (
                 <>
-                    <h1 className="text-4xl sm:text-5xl text-center font-bold mx-8 mb-20">
+                    <h1 className="text-4xl sm:text-5xl text-center font-bold mx-8 mb-16 sm:mb-20">
                         {title}
                     </h1>
 

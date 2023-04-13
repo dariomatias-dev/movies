@@ -8,7 +8,7 @@ const borderColorTwo = "border-gray-600";
 
 const Loading = () => {
     return (
-        <div className="flex justify-center items-center my-28">
+        <div className="flex justify-center items-center my-32">
             <div
                 style={{
                     width: `${maxWidth}px`,
