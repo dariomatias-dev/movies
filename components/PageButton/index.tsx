@@ -1,29 +1,28 @@
-import { Dispatch, SetStateAction } from 'react';
 import { MdOutlineArrowBackIos, MdOutlineArrowForwardIos } from 'react-icons/md';
+
+import { useData } from '../Context';
 
 type Props = {
     buttonType: string;
-    amountPages?: number;
     buttonValue?: number;
-    page: number;
-    setPage: Dispatch<SetStateAction<number>>;
 };
 
-const PageButton = ({ buttonType, amountPages = 0, buttonValue = 1, page, setPage }: Props) => {
-    const conditionNextPage = page >= amountPages ? true : buttonValue > amountPages && buttonValue !== 0;
+const PageButton = ({ buttonType, buttonValue = 1 }: Props) => {
+    const { pageData, changePageData } = useData();
+
+    const conditionNextPage = pageData.page >= pageData.amountPages ?
+        true
+        :
+        buttonValue > pageData.amountPages && buttonValue !== 0;
 
     return (
         <button
             type='button'
-            onClick={() => buttonType === 'previous' ? setPage(page - 1) : setPage(buttonValue === 1 ? page + buttonValue : buttonValue)}
-            disabled={buttonType === 'previous' ? page === 1 : conditionNextPage}
+            onClick={() => buttonType === 'previous' ? changePageData('page', pageData.page - 1) : changePageData('page', buttonValue === 1 ? pageData.page + buttonValue : buttonValue)}
+            disabled={buttonType === 'previous' ? pageData.page === 1 : conditionNextPage}
             className='w-12 h-12 flex justify-center items-center bg-black hover:bg-[#0A0A0A] rounded-full transition duration-300 disabled:opacity-50 disabled:hover:bg-black disabled:cursor-not-allowed'
         >
-            {
-                buttonType === 'previous' && (
-                    <MdOutlineArrowBackIos className='w-6 h-6' />
-                )
-            }
+            {buttonType === 'previous' && <MdOutlineArrowBackIos className='w-6 h-6' />}
 
             {
                 buttonType === 'next' && (

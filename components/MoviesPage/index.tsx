@@ -1,20 +1,18 @@
-import { Dispatch, SetStateAction } from 'react';
-
-import PageButton from '@/components/PageButton';
+import { useData } from '../Context';
 import MovieCard from '../MovieCard';
+import PageButton from '@/components/PageButton';
 
 import { MovieProps } from '@/@types/Movie';
 
 type Props = {
     title: string;
     errorMessage: string;
-    amountPages: number;
     movies: MovieProps[];
-    page: number;
-    setPage: Dispatch<SetStateAction<number>>;
 };
 
-const MoviesPage = ({ title, errorMessage, amountPages, movies, page, setPage }: Props) => {
+const MoviesPage = ({ title, errorMessage, movies }: Props) => {
+    const { pageData } = useData();
+
     return (
         <div className='flex flex-col mt-20 mb-16'>
             {
@@ -41,11 +39,7 @@ const MoviesPage = ({ title, errorMessage, amountPages, movies, page, setPage }:
 
                         <div className='flex justify-center mt-8'>
                             <div className='w-96 flex justify-between'>
-                                <PageButton
-                                    buttonType='previous'
-                                    page={page}
-                                    setPage={setPage}
-                                />
+                                <PageButton buttonType='previous' />
 
                                 {
                                     Array.from({ length: 4 }).map((_, index) => {
@@ -53,21 +47,13 @@ const MoviesPage = ({ title, errorMessage, amountPages, movies, page, setPage }:
                                             <PageButton
                                                 key={index}
                                                 buttonType='next'
-                                                amountPages={amountPages}
-                                                buttonValue={page + index + 1}
-                                                page={page}
-                                                setPage={setPage}
+                                                buttonValue={pageData.page + index + 1}
                                             />
                                         )
                                     })
                                 }
 
-                                <PageButton
-                                    buttonType='next'
-                                    amountPages={amountPages}
-                                    page={page}
-                                    setPage={setPage}
-                                />
+                                <PageButton buttonType='next' />
                             </div>
                         </div>
                     </>
