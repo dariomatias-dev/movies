@@ -25,9 +25,11 @@
 </ul>
 
 ## Link de acesso
-Veja esse projeto em execução: [demo](https://webchat-dariomatias-dev.vercel.app/).
+
+Veja esse projeto em execução: [demo](https://movies-dariomatias-dev.vercel.app/).
 
 ## Screenshots
+
 <h3>Desktop</h3>
 <img style="width: 50%" src="./public/screenshots/desktop.png" alt="Screenshot desktopo"/>
 <h3>Mobile</h3>
@@ -37,10 +39,10 @@ Veja esse projeto em execução: [demo](https://webchat-dariomatias-dev.vercel.a
 
 As seguintes ferramentas foram usadas na construção desse projeto:
 
-- [TypeScript](https://www.typescriptlang.org/)
-- [Next.js](https://nextjs.org/)
-- [TailwindCSS](https://tailwindcss.com/)
-- [TMDB](https://www.themoviedb.org/)
+-   [TypeScript](https://www.typescriptlang.org/)
+-   [Next.js](https://nextjs.org/)
+-   [TailwindCSS](https://tailwindcss.com/)
+-   [TMDB](https://www.themoviedb.org/)
 
 <br/>
 

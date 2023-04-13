@@ -32,7 +32,7 @@ const months = [
 const Movie = () => {
     const [movie, setMovie] = useState({} as MovieDetailedProps);
 
-    const { params } = useData();
+    const { searchParams } = useData();
 
     const router = useRouter();
     const id = router.query["id"];
@@ -213,7 +213,7 @@ const Movie = () => {
                 </div>
 
                 <div className="flex justify-center">
-                    <Link href={params ? `/search?q=${params}` : '/'} legacyBehavior>
+                    <Link href={searchParams ? `/search?q=${searchParams}` : '/'} legacyBehavior>
                         <a className="w-80 bg-red-500 hover:bg-transparent text-white hover:text-red-500 text-center mt-14 sm:mt-20 p-2 border-2 border-red-500 rounded-md transition duration-300">
                             Voltar
                         </a>

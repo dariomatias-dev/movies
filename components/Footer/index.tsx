@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+    BsFillArrowUpSquareFill,
     BsFillTelephoneFill,
     BsGithub,
     BsInstagram,
@@ -8,9 +9,18 @@ import {
 import { MdEmail } from "react-icons/md";
 
 const Footer = () => {
+    const goToTheTop = () => window.scrollTo(0, 0);
+
     return (
-        <div>
-            <div className="flex flex-col md:flex-row items-center md:items-stretch justify-around gap-8 min-h-52 bg-[#080808] py-4 px-8">
+        <>
+            <div className="relative flex flex-col md:flex-row items-center md:items-stretch justify-around gap-8 min-h-52 bg-[#0a0a0a] py-4 px-8">
+                <div className="absolute top-4 right-4 bg-zinc-400 rounded-md">
+                    <BsFillArrowUpSquareFill
+                        onClick={goToTheTop}
+                        className="w-10 h-10 text-zinc-900 hover:text-zinc-800 transition duration-300"
+                    />
+                </div>
+
                 <div className="flex flex-col items-center md:items-start">
                     <h2 className="inline-block text-lg font-bold">
                         Sobre nós
@@ -48,7 +58,7 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="flex flex-col items-center md:items-start">
+                <div className="flex flex-col items-center md:items-start md:mr-12">
                     <h2 className="inline-block text-lg font-bold">
                         Redes Sociais
                     </h2>
@@ -89,7 +99,7 @@ const Footer = () => {
             <div className="flex justify-center items-center h-12 bg-black text-xs sm:text-sm text-zinc-400">
                 Copyright ©2023 | Criado por Dário Matias
             </div>
-        </div>
+        </>
     );
 };
 

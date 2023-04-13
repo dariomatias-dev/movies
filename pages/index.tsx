@@ -33,7 +33,7 @@ const Home = () => {
         searchMovies();
     }, []);
 
-    if (!movies.length) return <Loading />
+    if (!movies.length) return <Loading />;
 
     return (
         <MoviesPage title={title} errorMessage={errorMessage} movies={movies} />

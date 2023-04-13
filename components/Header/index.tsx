@@ -1,18 +1,33 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import gradientStyle from "../../styles/Gradient.module.css";
 import inputStyle from "../../styles/Input.module.css";
 
+import { useData } from "../Context";
+
 const Header = () => {
-    const [searchParams, setSearchParams] = useState("");
+    const [params, setParams] = useState("");
     const [showInput, setShowInput] = useState(false);
+
+    const { resetPage, changeSearchParams } = useData();
+
+    const refBigScreenInput = useRef<HTMLInputElement>(null);
+    const refSmallScreenInput = useRef<HTMLInputElement>(null);
 
     const router = useRouter();
 
     const search = () => {
-        router.push(`/search?q=${searchParams}`);
-        setSearchParams("");
+        changeSearchParams(params);
+
+        if (refBigScreenInput !== null || refSmallScreenInput !== null) {
+            refBigScreenInput.current?.blur();
+            refSmallScreenInput.current?.blur();
+        }
+
+        router.push(`/search?q=${params}`);
+        setParams("");
+        resetPage();
     };
 
     const checkWidth = () => {
@@ -30,7 +45,15 @@ const Header = () => {
         >
             <div className="w-full flex justify-between">
                 <Link href="/" legacyBehavior>
-                    <a className="text-3xl text-red-500 font-bold">NextFlix</a>
+                    <a
+                        onClick={() => {
+                            resetPage();
+                            changeSearchParams("");
+                        }}
+                        className="text-3xl text-red-500 font-bold"
+                    >
+                        NextFlix
+                    </a>
                 </Link>
 
                 <button
@@ -45,9 +68,10 @@ const Header = () => {
 
                 <input
                     type="text"
+                    ref={refBigScreenInput}
                     placeholder="Buscar filmes"
-                    value={searchParams}
-                    onChange={(e) => setSearchParams(e.target.value)}
+                    value={params}
+                    onChange={(e) => setParams(e.target.value)}
                     onKeyUp={(e) => (e.key === "Enter" ? search() : "")}
                     className={`${inputStyle.input} hidden sm:flex h-8 pl-2 bg-zinc-900 border border-zinc-700 hover:border-zinc-600 focus:border-zinc-500 rounded-md outline-none transition duration-300`}
                 />
@@ -55,9 +79,10 @@ const Header = () => {
 
             <input
                 type="text"
+                ref={refSmallScreenInput}
                 placeholder="Buscar filmes"
-                value={searchParams}
-                onChange={(e) => setSearchParams(e.target.value)}
+                value={params}
+                onChange={(e) => setParams(e.target.value)}
                 onKeyUp={(e) => (e.key === "Enter" ? search() : "")}
                 style={showInput ? { display: "flex" } : { display: "none" }}
                 className={`${inputStyle.input} w-full h-8 pl-2 bg-zinc-900 border border-zinc-700 hover:border-zinc-600 focus:border-zinc-500 rounded-md outline-none transition duration-300`}
