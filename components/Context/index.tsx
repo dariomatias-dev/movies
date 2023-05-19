@@ -26,14 +26,17 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     });
     const [searchParams, setSearchParams] = useState("");
 
+    // Atualiza os dados de "pageData" quando chamado.
     const changePageData = (changeProperty: string, value: number) => {
         setPageData((prevState) => {
             return { ...prevState, [changeProperty]: value };
         });
     };
 
+    // Atualiza "searchParams" com um novo valor ao ser chamado.
     const changeSearchParams = (value: string) => setSearchParams(value);
 
+    // Reseta o valor da página que deve ser exibida para 1 (página inicial).
     const resetPage = () => changePageData("page", 1);
 
     return (

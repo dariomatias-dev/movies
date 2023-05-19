@@ -15,6 +15,7 @@ const Home = () => {
 
     const { pageData, changePageData } = useData();
 
+    // Faz uma requisição para API buscando os dados dos filmes e guardando em seguida.
     const searchMovies = async () => {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_API}top_rated?${process.env.NEXT_PUBLIC_API_KEY}&page=${pageData.page}`
@@ -25,14 +26,17 @@ const Home = () => {
         setMovies(data.results);
     };
 
+    // Quando "pageData.page" mudar, ou em outras palavras, o número da página que deve ser exibida mudar, e "movies" estiver vazio, a função de buscar filmes é chamada.
     useEffect(() => {
         if (movies.length) searchMovies();
     }, [pageData.page]);
 
+    // Chama a função de buscar filmes quando a página é aberta.
     useEffect(() => {
         searchMovies();
     }, []);
 
+    // Caso "movies" esteja vazio, é mostrado um componente de carregamento.
     if (!movies.length) return <Loading />;
 
     return (

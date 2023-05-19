@@ -19,6 +19,7 @@ const Search = () => {
     const router = useRouter();
     const query = router.query["q"];
 
+    // Manda para a API o nome que deve bsucar filmes nomes correspondentes.
     const getMovies = async () => {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_SEARCH}?${process.env.NEXT_PUBLIC_API_KEY}&query=${query}&page=${pageData.page}`
@@ -29,10 +30,12 @@ const Search = () => {
         setMovies(data.results);
     };
 
+    // Quando "pageData.page" mudar, ou em outras palavras, o número da página que deve ser exibida mudar, e "movies" estiver vazio, a função de buscar filmes é chamada.
     useEffect(() => {
         if (movies.length) getMovies();
     }, [pageData.page]);
 
+    // Quando "query" mudar e não estiver vazia, define o valor do título da página de resultado de filmes.
     useEffect(() => {
         if (!query) return;
 

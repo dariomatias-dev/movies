@@ -37,6 +37,7 @@ const Movie = () => {
     const router = useRouter();
     const id = router.query["id"];
 
+    // Busca os dados do filme e chama as funções que irão formatar os dados referentes a tempo.
     const getMovie = async (movieURL: string) => {
         const res = await fetch(movieURL);
         const data: MovieDetailedProps = await res.json();
@@ -52,6 +53,7 @@ const Movie = () => {
         setMovie(data);
     };
 
+    // Formata a data passado para o formato de dia (número), mês (palavra) e ano (número).
     const getReleaseMovie = (date: string) => {
         const release_date = new Date(date).toLocaleDateString("pt-BR");
         const day = release_date.split("/")[0];
@@ -61,6 +63,7 @@ const Movie = () => {
         return `${Number(day)} de ${months[Number(month)]} de ${years}.`;
     };
 
+    // Converte o tempo de duração do filme de minutos, para o formata de horas e minutos.
     const getRuntimeMovie = (runtime: number) => {
         const hours = Math.floor(runtime / 60);
         const minutes = runtime % 60;
@@ -70,6 +73,7 @@ const Movie = () => {
         }.`;
     };
 
+    // Quando o valor de "id" (id do filme) mudar e ele não estiver vazio, a função "getMovie" é chamada, passando como parâmetro a URL de busca do filme.
     useEffect(() => {
         if (!id) return;
 

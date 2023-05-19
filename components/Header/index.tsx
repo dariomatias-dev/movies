@@ -17,6 +17,7 @@ const Header = () => {
 
     const router = useRouter();
 
+    // Quando chamado, retira o focus dos inputs, e redireciona para a página de pesquisa, definindo a query com o parâmetro que deve ser pesquisado.
     const search = () => {
         changeSearchParams(params);
 
@@ -30,11 +31,13 @@ const Header = () => {
         resetPage();
     };
 
+    // Verifica a largura da janela, caso seja igual ou maior que 640, o input para telas pequenas não é exibido.
     const checkWidth = () => {
         const width = window.innerWidth;
         if (width >= 640) setShowInput(false);
     };
 
+    // Quando a página é aberta, adiciona um "addEventListener" ao window, e toda vez que a sua largura mudar, a função "checkWidth" é chamada.
     useEffect(() => {
         window.addEventListener("resize", checkWidth);
     }, []);
