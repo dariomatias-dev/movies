@@ -7,6 +7,10 @@
 
 ## Projeto
 
+### Propósito
+
+Criado com a intenção de treinar o uso de APIs.
+
 ### O que irá encontrar:
 
 <ul>
@@ -28,6 +32,24 @@
 
 Veja esse projeto em execução: [demo](https://movies-dariomatias-dev.vercel.app/).
 
+## Como usar
+
+### Caso queira baixar, testar ou alterar o projeto, siga os seguintes passos:
+
+#### Clonar
+
+Primeiro clone o repositório com: git clone [link HTTPS ou SSH do repositório]
+
+Pode conseguir esse link acessando o repositório que quer clonar, e apertando em um botão verde com o nome "<> CODE".
+
+#### Baixar dependências
+
+Depois baixe todas as dependências necessárias: npm i
+
+#### Rodar
+
+Rode o projeto com: npm run dev
+
 ## Screenshots
 
 <h3>Desktop</h3>
@@ -40,8 +62,8 @@ Veja esse projeto em execução: [demo](https://movies-dariomatias-dev.vercel.ap
 As seguintes ferramentas foram usadas na construção desse projeto:
 
 -   [TypeScript](https://www.typescriptlang.org/)
--   [Next.js](https://nextjs.org/)
 -   [TailwindCSS](https://tailwindcss.com/)
+-   [Next.js](https://nextjs.org/)
 -   [TMDB](https://www.themoviedb.org/)
 
 <br/>
